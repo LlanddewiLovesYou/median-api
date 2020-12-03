@@ -63,12 +63,26 @@ const post6 = PostFactory({
 });
 const posts = [post2, post1, post3, post4, post5, post6];
 
-const getPosts = (req, res, next) => {
-  res.send(posts);
-};
+class PostController {
+  getAllPosts(req, res, next) {
+    try {
+      res.send(posts);
+    } catch (e) {
+      console.log(e);
+      res.send(e.fullMessgaes);
+    }
+  }
 
-const createPost = (req, res, next) => {
-  const data = req.body;
-};
+  createPost(req, res, next) {
+    try {
+      const data = req.body;
+      const newPost = createNewPost(data);
+      res.send(newPost);
+    } catch (e) {
+      res.status(400);
+      res.send(e);
+    }
+  }
+}
 
-module.exports = { getPosts };
+module.exports = PostController;
