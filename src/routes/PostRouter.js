@@ -1,8 +1,8 @@
-const { Router } = require("express");
-const { getAllPosts } = require("../api/posts");
+const express = require("express");
+const { getAllPosts } = require("../api/PostController");
 
-const PostRouter = Router();
+const PostRouter = express.Router();
 
-PostRouter.get("/posts", () => console.log("hit route"));
+PostRouter.get("/", getAllPosts);
 
 module.exports = PostRouter;

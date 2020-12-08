@@ -63,26 +63,27 @@ const post6 = PostFactory({
 });
 const posts = [post2, post1, post3, post4, post5, post6];
 
-class PostController {
-  getAllPosts(req, res, next) {
-    try {
-      res.send(posts);
-    } catch (e) {
-      console.log(e);
-      res.send(e.fullMessgaes);
-    }
-  }
+const { createNewPost, getAllPostsFromDB } = require("../services/PostService");
 
-  createPost(req, res, next) {
-    try {
-      const data = req.body;
-      const newPost = createNewPost(data);
-      res.send(newPost);
-    } catch (e) {
-      res.status(400);
-      res.send(e);
-    }
+const getAllPosts = async (req, res, next) => {
+  try {
+    const posts = await getAllPostsFromDB(req.body);
+    res.send(posts);
+  } catch (e) {
+    console.log(e);
+    res.send(e.fullMessgaes);
   }
-}
+};
 
-module.exports = PostController;
+const createPost = async (req, res, next) => {
+  try {
+    const data = req.body;
+    const newPost = await createNewPost(data);
+    res.send(newPost);
+  } catch (e) {
+    res.status(400);
+    res.send(e);
+  }
+};
+
+module.exports = { getAllPosts, createPost };

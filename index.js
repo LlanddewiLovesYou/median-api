@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const PostRouter = require("./src/routes/PostRouter");
 const { connectDb, models } = require("./src/models");
-const PostController = require("./src/api/posts");
+const { getAllPosts, createPost } = require("./src/api/PostController");
 
 const app = express();
 app.use(cors());
@@ -16,14 +16,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(PostRouter);
-
-app.post("/posts", async (req, res, next) => {
-  const post = await req.context.models.post.create(req.body);
-  res.send(post);
-});
-
-app.get("/posts", PostController.getAllPosts);
+app.use("/posts", PostRouter);
 
 connectDb().then(() => {
   app.listen(process.env.PORT, () =>
