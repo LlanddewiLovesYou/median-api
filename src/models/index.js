@@ -1,12 +1,15 @@
 const mongoose = require("mongoose");
 
-// import User from "./user";
 const Post = require("./post");
+const User = require("./user");
 
 const connectDb = () => {
-  return mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
+  return mongoose.connect(process.env.DATABASE_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
 };
 
-const models = { Post };
+const models = { Post, User };
 
 module.exports = { connectDb, models };

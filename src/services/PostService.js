@@ -20,4 +20,38 @@ const getAllPostsFromDB = async (data) => {
   }
 };
 
-module.exports = { createNewPost, getAllPostsFromDB };
+const deletePostById = async (id) => {
+  try {
+    const posts = await Post.find({ id });
+    const deletedPosts = await Post.deleteMany({ id });
+    return posts;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+const getPostById = async (id) => {
+  try {
+    const post = await Post.find({ id });
+    return post;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+const updatePostById = async (id, body) => {
+  try {
+    let post = await Post.update({ id }, { $set: body });
+    return post;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+module.exports = {
+  createNewPost,
+  getAllPostsFromDB,
+  deletePostById,
+  getPostById,
+  updatePostById,
+};
