@@ -7,6 +7,7 @@ const {
   getAllUsers,
   getUserByUsername,
   deleteUserByUsername,
+  validateJwt,
 } = require("../services/UserService");
 
 const createUser = async (req, res, next) => {
@@ -27,16 +28,32 @@ const createUser = async (req, res, next) => {
 const loginUser = async (req, res, next) => {
   try {
     const userData = req.body;
-    const authenticated = await authenticateUser(userData);
+    const currentUser = await getUserByUsername(userData.userName);
+    const authenticated = await authenticateUser(userData, currentUser);
     if (authenticated) {
-      const accessToken = await getAccessToken(userData);
-      res.send({ accessToken });
+      const accessToken = await getAccessToken(currentUser.toJSON());
+      res.send({ accessToken, currentUser });
     } else {
       res.status(401).send();
     }
   } catch (e) {
     res.status(500).send();
-    console.log(e.message);
+    console.log(e);
+  }
+};
+
+const validateAccessToken = async (req, res, next) => {
+  try {
+    const token = req.body.accessToken;
+    const validation = await validateJwt(token);
+
+    if (validation.valid) {
+      res.send(validation.currentUser);
+    } else {
+      res.sendStatus(403);
+    }
+  } catch (e) {
+    console.log(e);
   }
 };
 
@@ -62,7 +79,6 @@ const getSpecificUser = async (req, res, next) => {
 const destroyUser = async (req, res, next) => {
   try {
     const userName = req.params.username;
-    console.log({ userName });
     const user = await deleteUserByUsername(userName);
     res.send(user);
   } catch (e) {
@@ -76,4 +92,5 @@ module.exports = {
   getUsers,
   getSpecificUser,
   destroyUser,
+  validateAccessToken,
 };

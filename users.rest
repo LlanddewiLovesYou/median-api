@@ -1,5 +1,6 @@
 
-GET http://localhost:5000/users
+GET http://localhost:5000/users/
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmRiZWU3ZWRmY2NkYTBhMThhNDc1M2MiLCJ1c2VyTmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkZlRteVhLMGhjY1dJaHdkMVhQeDJYZXdWQmpBUGRPZEViZWVUa25wYm9PVURKd3hFWTgxV2EiLCJwZXJtaXNzaW9ucyI6ImFkbWluIiwiY3JlYXRlZEF0IjoiMjAyMC0xMi0xN1QyMzo0OToxOC4wNTFaIiwidXBkYXRlZEF0IjoiMjAyMC0xMi0xN1QyMzo0OToxOC4wNTFaIiwiX192IjowLCJpYXQiOjE2MDgyNDk3NjQsImV4cCI6MTYwODI1MzM2NH0.DIl0Bu4T-IlqYEc8rR27yUouFe-iZ1BJ4xx1Q4OyFIw
 
 ###
 
@@ -8,15 +9,17 @@ POST http://localhost:5000/users
 content-type: application/json
 
 {
-    "userName": "LlanddewiLovesYou",
-    "password": "Brefi1979!",
+    "userName": "admin",
+    "password": "brefi1979!",
     "permissions": "admin"
 }
 
 ###
 
-DELETE  http://localhost:5000/users/
+DELETE  http://localhost:5000/users/LlanddewiLovesYou
 content-type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmRiZWU3ZWRmY2NkYTBhMThhNDc1M2MiLCJ1c2VyTmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkZlRteVhLMGhjY1dJaHdkMVhQeDJYZXdWQmpBUGRPZEViZWVUa25wYm9PVURKd3hFWTgxV2EiLCJwZXJtaXNzaW9ucyI6ImFkbWluIiwiY3JlYXRlZEF0IjoiMjAyMC0xMi0xN1QyMzo0OToxOC4wNTFaIiwidXBkYXRlZEF0IjoiMjAyMC0xMi0xN1QyMzo0OToxOC4wNTFaIiwiX192IjowLCJpYXQiOjE2MDgyNDk3NjQsImV4cCI6MTYwODI1MzM2NH0.DIl0Bu4T-IlqYEc8rR27yUouFe-iZ1BJ4xx1Q4OyFIw
+
 
 {
     "userName": "LlanddewiLovesYou",
@@ -31,6 +34,16 @@ POST http://localhost:5000/users/login
 content-type: application/json
 
 {
-    "userName": "testuser",
-    "password": "password"
+    "userName": "admin",
+    "password": "brefi1979!"
+}
+
+###
+
+// validate token
+POST http://localhost:5000/users/validate
+Content-Type: application/json
+
+{
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmQ2ODExYjMxZjkwMTU2ZjBiOWJkYmIiLCJ1c2VyTmFtZSI6InRlc3R1c2VyIiwicGFzc3dvcmQiOiIkMmIkMTAkLzJrdW11Wm8zZFRnNk9sOHNhRDNRZTdMaFg0WVJrTmtNYnVkZFpmYVQuSDVjekF1QTMzQWEiLCJjcmVhdGVkQXQiOiIyMDIwLTEyLTEzVDIxOjAxOjE1LjEwMVoiLCJ1cGRhdGVkQXQiOiIyMDIwLTEyLTEzVDIxOjAxOjE1LjEwMVoiLCJfX3YiOjAsImlhdCI6MTYwODIzOTA0NCwiZXhwIjoxNjA4MjQyNjQ0fQ.vOwhjU4zfEkxAGlq9J0qKD_1-XX2rBx7dHMk8Izjt74"
 }

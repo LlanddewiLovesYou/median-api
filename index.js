@@ -14,6 +14,6 @@ app.use("/users", UserRouter);
 
 connectDb().then(() => {
   app.listen(process.env.PORT, () =>
-    console.log(`app is listening on port ${process.env.PORT}`)
+    console.log(`MEDIAN-API is listening on port ${process.env.PORT}`)
   );
 });

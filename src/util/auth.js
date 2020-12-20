@@ -1,10 +1,7 @@
 const Bcrypt = require("bcrypt");
 const JWT = require("jsonwebtoken");
-const User = require("../models/user");
 
-const authenticateUser = async (body) => {
-  const users = await User.find({ userName: body.userName });
-  const user = users[0];
+const authenticateUser = async (body, user) => {
   if (user === null) {
     res.status(400).send("Cannot find user");
   }
@@ -25,6 +22,7 @@ const authenticateToken = (req, res, next) => {
 
   JWT.verify(token, process.env.JWT_SECRET, (err, user) => {
     if (err) {
+      console.log(err);
       return res.sendStatus(403);
     }
     req.user = user;

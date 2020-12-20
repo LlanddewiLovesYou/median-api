@@ -13,7 +13,7 @@ const createNewPost = async (data) => {
 
 const getAllPostsFromDB = async (data) => {
   try {
-    const posts = await Post.find();
+    const posts = await Post.find().sort({ createdAt: "desc" });
     return posts;
   } catch (e) {
     console.log(e);
