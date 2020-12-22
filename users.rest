@@ -1,6 +1,6 @@
 
 GET http://localhost:5000/users/
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmRiZWU3ZWRmY2NkYTBhMThhNDc1M2MiLCJ1c2VyTmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkZlRteVhLMGhjY1dJaHdkMVhQeDJYZXdWQmpBUGRPZEViZWVUa25wYm9PVURKd3hFWTgxV2EiLCJwZXJtaXNzaW9ucyI6ImFkbWluIiwiY3JlYXRlZEF0IjoiMjAyMC0xMi0xN1QyMzo0OToxOC4wNTFaIiwidXBkYXRlZEF0IjoiMjAyMC0xMi0xN1QyMzo0OToxOC4wNTFaIiwiX192IjowLCJpYXQiOjE2MDgyNDk3NjQsImV4cCI6MTYwODI1MzM2NH0.DIl0Bu4T-IlqYEc8rR27yUouFe-iZ1BJ4xx1Q4OyFIw
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmUyM2FhNzE0NjQwODU4MTc0NjE3YWMiLCJ1c2VyTmFtZSI6IkxsYW5kZGV3aUxvdmVzWW91IiwicGFzc3dvcmQiOiIkMmIkMTAkeHNPaVpVLnFKLjRQWFBiUGZONThGTzlpRHI5MVRKLlliVTVieDJ4RTVaM1kuSlZmcU9zdmEiLCJwZXJtaXNzaW9ucyI6InJlYWQtb25seSIsImNyZWF0ZWRBdCI6IjIwMjAtMTItMjJUMTg6Mjc6NTEuMzUyWiIsInVwZGF0ZWRBdCI6IjIwMjAtMTItMjJUMTg6Mjc6NTEuMzUyWiIsIl9fdiI6MCwiaWF0IjoxNjA4NjYxOTE4LCJleHAiOjE2MDg2NjU1MTh9.Ddy-5uVoQlVLSVmhy_zEj1f5eLQbfYNUaijE6OOu9zM
 
 ###
 
@@ -9,14 +9,14 @@ POST http://localhost:5000/users
 content-type: application/json
 
 {
-    "userName": "admin",
-    "password": "brefi1979!",
+    "userName": "LlanddewiLovesYou",
+    "password": "Brefi1979!",
     "permissions": "admin"
 }
 
 ###
 
-DELETE  http://localhost:5000/users/LlanddewiLovesYou
+DELETE  http://localhost:5000/users/sampleuser
 content-type: application/json
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmRiZWU3ZWRmY2NkYTBhMThhNDc1M2MiLCJ1c2VyTmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkZlRteVhLMGhjY1dJaHdkMVhQeDJYZXdWQmpBUGRPZEViZWVUa25wYm9PVURKd3hFWTgxV2EiLCJwZXJtaXNzaW9ucyI6ImFkbWluIiwiY3JlYXRlZEF0IjoiMjAyMC0xMi0xN1QyMzo0OToxOC4wNTFaIiwidXBkYXRlZEF0IjoiMjAyMC0xMi0xN1QyMzo0OToxOC4wNTFaIiwiX192IjowLCJpYXQiOjE2MDgyNDk3NjQsImV4cCI6MTYwODI1MzM2NH0.DIl0Bu4T-IlqYEc8rR27yUouFe-iZ1BJ4xx1Q4OyFIw
 
@@ -34,8 +34,8 @@ POST http://localhost:5000/users/login
 content-type: application/json
 
 {
-    "userName": "admin",
-    "password": "brefi1979!"
+    "userName": "LlanddewiLovesYou",
+    "password": "Brefi1979!"
 }
 
 ###

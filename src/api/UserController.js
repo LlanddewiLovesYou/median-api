@@ -19,16 +19,23 @@ const createUser = async (req, res, next) => {
       password: encryptedPassword,
       permissions: data.permissions || "read-only",
     });
-    res.status(201).send(user);
+    const accessToken = await getAccessToken(user.toJSON());
+    res.status(201).send({ user, accessToken });
   } catch (e) {
-    console.log(e.message);
+    res.send(e);
+    console.log(e);
   }
 };
 
 const loginUser = async (req, res, next) => {
   try {
     const userData = req.body;
-    const currentUser = await getUserByUsername(userData.userName);
+
+    const users = await getUserByUsername(userData.userName);
+    const currentUser = users[0];
+    if (!currentUser) {
+      res.status(401).send("no such user");
+    }
     const authenticated = await authenticateUser(userData, currentUser);
     if (authenticated) {
       const accessToken = await getAccessToken(currentUser.toJSON());
@@ -37,7 +44,7 @@ const loginUser = async (req, res, next) => {
       res.status(401).send();
     }
   } catch (e) {
-    res.status(500).send();
+    res.status(500).send(e);
     console.log(e);
   }
 };

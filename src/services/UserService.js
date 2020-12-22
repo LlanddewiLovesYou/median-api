@@ -30,7 +30,7 @@ const getAllUsers = async () => {
 
 const getUserByUsername = async (userName) => {
   const users = await User.find({ userName: userName });
-  return users[0];
+  return users;
 };
 
 const deleteUserByUsername = async (userName) => {

@@ -42,7 +42,8 @@ const getPostById = async (id) => {
 const updatePostById = async (id, body) => {
   try {
     let post = await Post.update({ id }, { $set: body });
-    return post;
+    const updatedPost = await Post.find({ id });
+    return updatedPost;
   } catch (e) {
     console.log(e);
   }

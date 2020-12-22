@@ -34,6 +34,9 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    claps: {
+      type: Number,
+    },
   },
   { timestamps: true }
 );
