@@ -3,6 +3,7 @@ const cors = require("cors");
 const PostRouter = require("./src/routes/PostRouter");
 const UserRouter = require("./src/routes/UserRouter");
 const ClapRouter = require("./src/routes/ClapRouter");
+const CommentRouter = require("./src/routes/CommentRouter");
 const { connectDb, models } = require("./src/models");
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/posts", PostRouter);
 app.use("/users", UserRouter);
 app.use("/claps", ClapRouter);
+app.use("/comments", CommentRouter);
 
 connectDb().then(() => {
   app.listen(port, () =>

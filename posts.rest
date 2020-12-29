@@ -4,7 +4,7 @@ authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmQ2OWRiY
 
 ###
 
-GET  http://localhost:5000/posts
+GET  http://localhost:5000/posts/here-is-a-sample-post
 
 ###
 
