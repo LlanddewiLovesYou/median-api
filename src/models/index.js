@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
+mongoose.set("useFindAndModify", false);
 
-const Post = require("./post");
 const User = require("./user");
-const Comment = require("./comment");
+const Game = require("./game");
 
 const connectDb = () => {
   return mongoose.connect(process.env.DATABASE_URL, {
@@ -11,6 +11,6 @@ const connectDb = () => {
   });
 };
 
-const models = { Post, User, Comment };
+const models = { User, Game };
 
 module.exports = { connectDb, models };

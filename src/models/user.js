@@ -14,6 +14,9 @@ const userSchema = new mongoose.Schema(
     permissions: {
       type: String,
     },
+    friends: {
+      type: Array,
+    },
   },
   { timestamps: true }
 );

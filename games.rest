@@ -1,0 +1,31 @@
+//Create new Game
+POST http://localhost:5000/games/5ff4ef1ebead03cc13163be3
+content-type: application/json
+authorization: Bearer {{JWT}}
+
+{
+    "title": "SPACE JAM",
+    "year": 2020,
+    "started": "Sun Jan 03 2021",
+    "lastPlayed": "Sun Jan 03 2021",
+    "hours": 25.0,
+    "completed": false,
+    "completedOn": "Sun Jan 03 2021"
+}
+
+###
+// get all games by userId
+GET http://localhost:5000/games/5ff4ef1ebead03cc13163be3
+# authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmYyOTVjNWMyNzdkYmI5YzhkYWEyODciLCJ1c2VyTmFtZSI6IkxsYW5kZGV3aUxvdmVzWW91IiwicGFzc3dvcmQiOiIkMmIkMTAkN0lZWU5OdTVEZWJmbXFHeWhTQXdkdXRpT1JXS2twcXhXTGp2L0pMTmNMTjNiZGhWSUVGWk8iLCJwZXJtaXNzaW9ucyI6ImFkbWluIiwiY3JlYXRlZEF0IjoiMjAyMS0wMS0wNFQwNDoxMjo1My44MDZaIiwidXBkYXRlZEF0IjoiMjAyMS0wMS0wNFQwNDoxMjo1My44MDZaIiwiX192IjowLCJpYXQiOjE2MDk4MTA3MTAsImV4cCI6MTYwOTgxNDMxMH0.YMgtF-iTKzj5jfTSZUZhW5Q5vXp3rJz9-o4ZKI-6uaU
+
+###
+//update game by gameId
+
+PATCH http://localhost:5000/games/600a5e42453edb1dd6d1e3d3
+content-type: application/json
+authorization: Bearer {{JWT}}
+
+{
+    "title": "SPACE JAM",
+    "completed": "true"
+}

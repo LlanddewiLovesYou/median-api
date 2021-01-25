@@ -8,6 +8,10 @@ const {
   getUserByUsername,
   deleteUserByUsername,
   validateJwt,
+  addFriend,
+  removeFriend,
+  findUsersFriends,
+  getSearchResults,
 } = require("../services/UserService");
 
 const createUser = async (req, res, next) => {
@@ -93,6 +97,48 @@ const destroyUser = async (req, res, next) => {
   }
 };
 
+const befriendUser = async (req, res, next) => {
+  try {
+    const friendId = req.params.friendId;
+    const userId = req.user._id;
+    const updatedUser = await addFriend(friendId, userId);
+    res.send(updatedUser[0]);
+  } catch (e) {
+    next(e);
+  }
+};
+
+const unfriendUser = async (req, res, next) => {
+  try {
+    const friendId = req.params.friendId;
+    const userId = req.user._id;
+    const updatedUser = await removeFriend(friendId, userId);
+    res.send(updatedUser[0]);
+  } catch (e) {
+    next(e);
+  }
+};
+
+const getFriends = async (req, res, next) => {
+  try {
+    const userId = req.params.userId;
+    const friends = await findUsersFriends(userId);
+    res.send(friends);
+  } catch (e) {
+    next(e);
+  }
+};
+
+const searchUsers = async (req, res, next) => {
+  try {
+    const query = req.query.q;
+    const searchResults = await getSearchResults(query);
+    res.send(searchResults);
+  } catch (e) {
+    next(e);
+  }
+};
+
 module.exports = {
   createUser,
   loginUser,
@@ -100,4 +146,8 @@ module.exports = {
   getSpecificUser,
   destroyUser,
   validateAccessToken,
+  befriendUser,
+  unfriendUser,
+  getFriends,
+  searchUsers,
 };

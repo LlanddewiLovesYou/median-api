@@ -1,5 +1,5 @@
 {
-  "name": "median-api",
+  "name": "gamekeeper-api",
   "version": "1.0.0",
   "description": "Backend for median blog",
   "main": "index.js",

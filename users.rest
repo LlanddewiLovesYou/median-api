@@ -1,7 +1,6 @@
 
 GET http://localhost:5000/users/
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmUyM2FhNzE0NjQwODU4MTc0NjE3YWMiLCJ1c2VyTmFtZSI6IkxsYW5kZGV3aUxvdmVzWW91IiwicGFzc3dvcmQiOiIkMmIkMTAkeHNPaVpVLnFKLjRQWFBiUGZONThGTzlpRHI5MVRKLlliVTVieDJ4RTVaM1kuSlZmcU9zdmEiLCJwZXJtaXNzaW9ucyI6InJlYWQtb25seSIsImNyZWF0ZWRBdCI6IjIwMjAtMTItMjJUMTg6Mjc6NTEuMzUyWiIsInVwZGF0ZWRBdCI6IjIwMjAtMTItMjJUMTg6Mjc6NTEuMzUyWiIsIl9fdiI6MCwiaWF0IjoxNjA4NjYxOTE4LCJleHAiOjE2MDg2NjU1MTh9.Ddy-5uVoQlVLSVmhy_zEj1f5eLQbfYNUaijE6OOu9zM
-
+authorization: Bearer {{JWT}}
 ###
 
 //create user
@@ -9,22 +8,20 @@ POST http://localhost:5000/users
 content-type: application/json
 
 {
-    "userName": "LlanddewiLovesYou",
-    "password": "Brefi1979!",
-    "permissions": "admin"
+    "userName": "llanddewiBrefi",
+    "password": "password",
+    "permissions": "read-only"
 }
 
 ###
 
-DELETE  http://localhost:5000/users/sampleuser
+DELETE  http://localhost:5000/users/5ff295c5c277dbb9c8daa287
 content-type: application/json
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmRiZWU3ZWRmY2NkYTBhMThhNDc1M2MiLCJ1c2VyTmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkZlRteVhLMGhjY1dJaHdkMVhQeDJYZXdWQmpBUGRPZEViZWVUa25wYm9PVURKd3hFWTgxV2EiLCJwZXJtaXNzaW9ucyI6ImFkbWluIiwiY3JlYXRlZEF0IjoiMjAyMC0xMi0xN1QyMzo0OToxOC4wNTFaIiwidXBkYXRlZEF0IjoiMjAyMC0xMi0xN1QyMzo0OToxOC4wNTFaIiwiX192IjowLCJpYXQiOjE2MDgyNDk3NjQsImV4cCI6MTYwODI1MzM2NH0.DIl0Bu4T-IlqYEc8rR27yUouFe-iZ1BJ4xx1Q4OyFIw
+authorization: Bearer {{JWT}}
 
 
 {
     "userName": "LlanddewiLovesYou",
-    "password": "Brefi1979!",
-    "permissions": "admin"
 }
 
 ###
@@ -34,8 +31,8 @@ POST http://localhost:5000/users/login
 content-type: application/json
 
 {
-    "userName": "LlanddewiLovesYou",
-    "password": "Brefi1979!"
+    "userName": "newuser3",
+    "password": "password"
 }
 
 ###
@@ -45,5 +42,36 @@ POST http://localhost:5000/users/validate
 Content-Type: application/json
 
 {
-    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmQ2ODExYjMxZjkwMTU2ZjBiOWJkYmIiLCJ1c2VyTmFtZSI6InRlc3R1c2VyIiwicGFzc3dvcmQiOiIkMmIkMTAkLzJrdW11Wm8zZFRnNk9sOHNhRDNRZTdMaFg0WVJrTmtNYnVkZFpmYVQuSDVjekF1QTMzQWEiLCJjcmVhdGVkQXQiOiIyMDIwLTEyLTEzVDIxOjAxOjE1LjEwMVoiLCJ1cGRhdGVkQXQiOiIyMDIwLTEyLTEzVDIxOjAxOjE1LjEwMVoiLCJfX3YiOjAsImlhdCI6MTYwODIzOTA0NCwiZXhwIjoxNjA4MjQyNjQ0fQ.vOwhjU4zfEkxAGlq9J0qKD_1-XX2rBx7dHMk8Izjt74"
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmllbmRzIjpbXSwiX2lkIjoiNWZmMjk1YzVjMjc3ZGJiOWM4ZGFhMjg3IiwidXNlck5hbWUiOiJMbGFuZGRld2lMb3Zlc1lvdSIsInBhc3N3b3JkIjoiJDJiJDEwJDdJWVlOTnU1RGViZm1xR3loU0F3ZHV0aU9SV0trcHF4V0xqdi9KTE5jTE4zYmRoVklFRlpPIiwicGVybWlzc2lvbnMiOiJhZG1pbiIsImNyZWF0ZWRBdCI6IjIwMjEtMDEtMDRUMDQ6MTI6NTMuODA2WiIsInVwZGF0ZWRBdCI6IjIwMjEtMDEtMDRUMDQ6MTI6NTMuODA2WiIsIl9fdiI6MCwiaWF0IjoxNjEwNjQ5NDUwLCJleHAiOjE2MTA2NTMwNTB9.i229_LtyzXsw46cU3x0SmYzvkQorEexfxxvyssy0EkY"
 }
+
+###
+GET http://localhost:5000/users/newuser3
+Authorization: bearer {{JWT}}
+###
+
+// add friend
+
+PATCH  http://localhost:5000/users/friend/5ff4eedfbead03cc13163be2
+Content-Type: application/json
+Authorization: Bearer {{JWT}}
+
+###
+
+//remove friend
+
+PATCH  http://localhost:5000/users/unfriend/5ff295c5c277dbb9c8daa287
+Content-Type: application/json
+Authorization: Bearer {{JWT}}
+
+###
+
+// find Friends
+GET http://localhost:5000/users/friends/5ff4ef1ebead03cc13163be3
+Authorization: Bearer {{JWT}}
+
+###
+
+// Search Users
+GET http://localhost:5000/users/search?q=Ll
+# Authorization: Bearer {{JWT}}

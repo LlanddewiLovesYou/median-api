@@ -1,5 +1,6 @@
 const Bcrypt = require("bcrypt");
 const JWT = require("jsonwebtoken");
+const { getUserByUsername } = require("../services/UserService");
 
 const authenticateUser = async (body, user) => {
   if (user === null) {
@@ -13,7 +14,7 @@ const authenticateUser = async (body, user) => {
   }
 };
 
-const authenticateToken = (req, res, next) => {
+const authenticateToken = async (req, res, next) => {
   const bearer = req.headers["authorization"];
   const token = bearer && bearer.split(" ")[1];
   if (token === null) {
