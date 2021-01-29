@@ -28,6 +28,9 @@ const gameSchema = new mongoose.Schema(
     userId: {
       type: String,
     },
+    rogueLike: {
+      type: Boolean,
+    },
   },
   { timestamps: true }
 );

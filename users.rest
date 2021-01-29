@@ -75,3 +75,15 @@ Authorization: Bearer {{JWT}}
 // Search Users
 GET http://localhost:5000/users/search?q=Ll
 # Authorization: Bearer {{JWT}}
+
+
+###
+
+POST http://api-gamekeeper.herokuapp.com/users
+content-type: application/json
+
+{
+    "userName": "LlanddewiLovesYou",
+    "password": "Brefi1979!",
+    "permissions": "admin"
+}

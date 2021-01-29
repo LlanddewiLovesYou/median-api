@@ -12,7 +12,10 @@ const addNewGameToDb = async (body) => {
 
 const getAllGamesByUserName = async (userId) => {
   try {
-    const games = await Game.find({ userId }).sort({ lastPlayed: "desc" });
+    const games = await Game.find({ userId }).sort({
+      lastPlayed: "desc",
+      updatedAt: "desc",
+    });
     const user = await User.find({ _id: userId });
     return { games, user };
   } catch (e) {

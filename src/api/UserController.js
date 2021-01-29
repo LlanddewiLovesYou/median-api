@@ -18,13 +18,13 @@ const createUser = async (req, res, next) => {
   try {
     const data = req.body;
     const encryptedPassword = await Bcrypt.hash(data.password, 10);
-    const user = await User.create({
+    const currentUser = await User.create({
       userName: data.userName,
       password: encryptedPassword,
       permissions: data.permissions || "read-only",
     });
-    const accessToken = await getAccessToken(user.toJSON());
-    res.status(201).send({ user, accessToken });
+    const accessToken = await getAccessToken(currentUser.toJSON());
+    res.status(201).send({ currentUser, accessToken });
   } catch (e) {
     res.send(e);
     console.log(e);
