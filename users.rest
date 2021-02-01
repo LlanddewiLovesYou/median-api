@@ -15,14 +15,14 @@ content-type: application/json
 
 ###
 
-DELETE  http://localhost:5000/users/5ff295c5c277dbb9c8daa287
+DELETE  http://localhost:5000/users/user6
 content-type: application/json
 authorization: Bearer {{JWT}}
 
 
-{
-    "userName": "LlanddewiLovesYou",
-}
+# {
+#     "userName": "user7"
+# }
 
 ###
 
@@ -31,8 +31,8 @@ POST http://localhost:5000/users/login
 content-type: application/json
 
 {
-    "userName": "newuser3",
-    "password": "password"
+    "userName": "LlanddewiLovesYou",
+    "password": "Brefi1979!"
 }
 
 ###

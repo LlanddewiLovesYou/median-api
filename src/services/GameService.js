@@ -33,4 +33,19 @@ const updateGameData = async (gameId, patch) => {
   }
 };
 
-module.exports = { addNewGameToDb, getAllGamesByUserName, updateGameData };
+const deleteGameById = async (gameId) => {
+  try {
+    const deletedGame = await Game.find({ _id: gameId });
+    await Game.deleteOne({ _id: gameId });
+    return deletedGame;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+module.exports = {
+  addNewGameToDb,
+  getAllGamesByUserName,
+  updateGameData,
+  deleteGameById,
+};

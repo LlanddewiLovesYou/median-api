@@ -1,6 +1,7 @@
 const JWT = require("jsonwebtoken");
 const { default: jwtDecode } = require("jwt-decode");
 const User = require("../models/user");
+const Game = require("../models/game");
 
 const getAccessToken = async (user) => {
   const accessToken = await JWT.sign(user, process.env.JWT_SECRET, {
@@ -36,9 +37,15 @@ const getUserByUsername = async (userName) => {
 };
 
 const deleteUserByUsername = async (userName) => {
-  const user = User.find({ _id: userName });
-  await user.deleteMany({ _id: userName });
-  return user[0];
+  const [user] = await User.find({ userName });
+  console.log({ user });
+  const games = await Game.find({ userId: user._id });
+  console.log({ games });
+  if (games.length > 0) {
+    await Game.deleteMany({ userId: user._id });
+  }
+  await User.deleteMany({ userName: userName });
+  return { user, games };
 };
 
 const addFriend = async (friendId, userId) => {

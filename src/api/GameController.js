@@ -2,6 +2,7 @@ const {
   addNewGameToDb,
   getAllGamesByUserName,
   updateGameData,
+  deleteGameById,
 } = require("../services/GameService");
 
 const createNewGame = async (req, res, next) => {
@@ -38,4 +39,15 @@ const updateGame = async (req, res, next) => {
   }
 };
 
-module.exports = { createNewGame, getAllGames, updateGame };
+const deleteGame = async (req, res, next) => {
+  try {
+    const gameId = req.params.gameId;
+    const [deletedGame] = await deleteGameById(gameId);
+    res.send(deletedGame);
+  } catch (e) {
+    console.log(e);
+    next(e);
+  }
+};
+
+module.exports = { createNewGame, getAllGames, updateGame, deleteGame };
