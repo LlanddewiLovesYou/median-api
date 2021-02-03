@@ -38,9 +38,7 @@ const getUserByUsername = async (userName) => {
 
 const deleteUserByUsername = async (userName) => {
   const [user] = await User.find({ userName });
-  console.log({ user });
   const games = await Game.find({ userId: user._id });
-  console.log({ games });
   if (games.length > 0) {
     await Game.deleteMany({ userId: user._id });
   }
@@ -89,15 +87,6 @@ const findUsersFriends = async (userId) => {
   return friends;
 };
 
-const getSearchResults = async (query) => {
-  const $regex = new RegExp(query, "i", "g");
-  console.log({ $regex });
-  const results = await User.find({
-    userName: { $regex },
-  });
-  return results;
-};
-
 module.exports = {
   getAccessToken,
   getAllUsers,
@@ -107,5 +96,4 @@ module.exports = {
   addFriend,
   removeFriend,
   findUsersFriends,
-  getSearchResults,
 };

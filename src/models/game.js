@@ -10,22 +10,7 @@ const gameSchema = new mongoose.Schema(
     year: {
       type: Number,
     },
-    started: {
-      type: String,
-    },
-    lastPlayed: {
-      type: String,
-    },
-    hours: {
-      type: Number,
-    },
-    completed: {
-      type: Boolean,
-    },
-    completedOn: {
-      type: String,
-    },
-    userId: {
+    platform: {
       type: String,
     },
     rogueLike: {

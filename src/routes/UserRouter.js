@@ -9,16 +9,12 @@ const {
   befriendUser,
   unfriendUser,
   getFriends,
-  searchUsers,
 } = require("../api/UserController");
 const User = require("../models/user");
 const { authenticateToken } = require("../util/auth");
 const { checkPermissions } = require("../util/permissions");
 
 const UserRouter = express.Router();
-
-// Search
-UserRouter.get("/search", searchUsers);
 
 // auth
 UserRouter.post("/", createUser);

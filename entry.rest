@@ -1,0 +1,31 @@
+POST http://localhost:5000/my-games/5ff4ef1ebead03cc13163be3?gameId=6019eb783be1a7f726e78cb4
+content-type: application/json
+authorization: Bearer {{JWT}}
+
+{
+  "title": "Game 6",
+  "year": 2021,
+  "platform": "PC",
+  "rogueLike": false
+}
+
+###
+
+GET http://localhost:5000/my-games/5ff295c5c277dbb9c8daa287
+content-type: application/json
+authorization: Bearer {{JWT}}
+###
+
+PATCH http://localhost:5000/my-games/6019eb2d3be1a7f726e78cb3
+content-type: application/json
+authorization: Bearer {{JWT}}
+
+{
+    "hours": 3
+}
+
+###
+
+DELETE http://localhost:5000/my-games/6019eb2d3be1a7f726e78cb3
+content-type: application/json
+authorization: Bearer {{JWT}}

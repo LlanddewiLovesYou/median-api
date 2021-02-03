@@ -11,7 +11,6 @@ const {
   addFriend,
   removeFriend,
   findUsersFriends,
-  getSearchResults,
 } = require("../services/UserService");
 
 const createUser = async (req, res, next) => {
@@ -129,16 +128,6 @@ const getFriends = async (req, res, next) => {
   }
 };
 
-const searchUsers = async (req, res, next) => {
-  try {
-    const query = req.query.q;
-    const searchResults = await getSearchResults(query);
-    res.send(searchResults);
-  } catch (e) {
-    next(e);
-  }
-};
-
 module.exports = {
   createUser,
   loginUser,
@@ -149,5 +138,4 @@ module.exports = {
   befriendUser,
   unfriendUser,
   getFriends,
-  searchUsers,
 };
