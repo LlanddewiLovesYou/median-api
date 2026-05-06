@@ -1,7 +1,7 @@
 const Post = require("../models/post");
 
 const createNewPost = async (data) => {
-  data.readTime = Math.ceil(data.wordCount / 200);
+  data.readTime = Math.ceil(data.wordCount / 200) || 1;
   try {
     const post = await Post.create(data);
     console.log("post created!");
@@ -41,7 +41,7 @@ const getPostById = async (id) => {
 
 const updatePostById = async (id, body) => {
   try {
-    let post = await Post.update({ id }, { $set: body });
+    let post = await Post.updateOne({ id }, { $set: body });
     const updatedPost = await Post.find({ id });
     return updatedPost;
   } catch (e) {

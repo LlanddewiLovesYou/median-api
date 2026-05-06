@@ -1,33 +1,35 @@
-const Bcrypt = require("bcrypt");
-const JWT = require("jsonwebtoken");
+const { OAuth2Client } = require("google-auth-library");
+const { getAccessToken } = require("../services/UserService");
+require("dotenv").config();
 
-const authenticateUser = async (body, user) => {
-  if (user === null) {
-    res.status(400).send("Cannot find user");
-  }
-  try {
-    const authed = await Bcrypt.compare(body.password, user.password);
-    return authed;
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-const authenticateToken = (req, res, next) => {
+const authenticateToken = async (req, res, next) => {
   const bearer = req.headers["authorization"];
   const token = bearer && bearer.split(" ")[1];
-  if (token === null) {
+
+  if (!token) {
     return res.sendStatus(401);
   }
 
-  JWT.verify(token, process.env.JWT_SECRET, (err, user) => {
-    if (err) {
-      console.log(err);
-      return res.sendStatus(403);
-    }
-    req.user = user;
-    next();
+  const oAuth2Client = new OAuth2Client(
+    process.env.GOOGLE_CLIENT_ID,
+    process.env.GOOGLE_CLIENT_SECRET,
+    "postmessage",
+  );
+
+  const verified = await oAuth2Client.verifyIdToken({
+    idToken: token,
+    audience: process.env.GOOGLE_CLIENT_ID,
   });
+
+  req.user = verified.getPayload();
+
+  next();
 };
 
-module.exports = { authenticateUser, authenticateToken };
+const sendGoogleAuthResponse = async (user, res) => {
+  const accessToken = await getAccessToken(user.toJSON());
+  res.redirect("http://localhost:5173/home");
+  res.send({ accessToken, currentUser: user });
+};
+
+module.exports = { authenticateToken, sendGoogleAuthResponse };

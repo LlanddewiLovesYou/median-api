@@ -17,7 +17,7 @@ const createComment = async (postId, commentData) => {
     if (post.comments) {
       await Post.updateOne(
         { _id: post._id },
-        { comments: [...post.comments, comment._id] }
+        { comments: [...post.comments, comment._id] },
       );
     } else {
       await Post.updateOne({ _id: post._id }, { comments: [comment.id] });
@@ -31,7 +31,6 @@ const createComment = async (postId, commentData) => {
 const getCommentsByPostId = async (postId) => {
   try {
     const post = await Post.findOne({ id: postId });
-    console.log({ post });
     const comments = await Comment.find({ postId: post._id }).sort({
       createdAt: "desc",
     });

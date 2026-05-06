@@ -5,10 +5,7 @@ const User = require("./user");
 const Comment = require("./comment");
 
 const connectDb = () => {
-  return mongoose.connect(process.env.DATABASE_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  return mongoose.connect(process.env.DATABASE_CONNECTION_STRING);
 };
 
 const models = { Post, User, Comment };

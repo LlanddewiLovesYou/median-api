@@ -1,24 +1,35 @@
 
 GET http://localhost:5000/users/
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmUyM2FhNzE0NjQwODU4MTc0NjE3YWMiLCJ1c2VyTmFtZSI6IkxsYW5kZGV3aUxvdmVzWW91IiwicGFzc3dvcmQiOiIkMmIkMTAkeHNPaVpVLnFKLjRQWFBiUGZONThGTzlpRHI5MVRKLlliVTVieDJ4RTVaM1kuSlZmcU9zdmEiLCJwZXJtaXNzaW9ucyI6InJlYWQtb25seSIsImNyZWF0ZWRBdCI6IjIwMjAtMTItMjJUMTg6Mjc6NTEuMzUyWiIsInVwZGF0ZWRBdCI6IjIwMjAtMTItMjJUMTg6Mjc6NTEuMzUyWiIsIl9fdiI6MCwiaWF0IjoxNjA4NjYxOTE4LCJleHAiOjE2MDg2NjU1MTh9.Ddy-5uVoQlVLSVmhy_zEj1f5eLQbfYNUaijE6OOu9zM
+authorization: Bearer
 
 ###
 
 //create user
 POST http://localhost:5000/users
 content-type: application/json
+authorization: Bearer
 
 {
-    "userName": "LlanddewiLovesYou",
-    "password": "Brefi1979!",
-    "permissions": "admin"
+  "iss": "https://accounts.google.com",
+  "azp": "795928167105-a84o5k11ga71smag05h8c96jc8gkc575.apps.googleusercontent.com",
+  "aud": "795928167105-a84o5k11ga71smag05h8c96jc8gkc575.apps.googleusercontent.com",
+  "sub": "107672084474241639249",
+  "email": "iandelduca@gmail.com",
+  "email_verified": true,
+  "at_hash": "Q3Hn2WzaYdE8O2p0EVP4hA",
+  "name": "WORK EMAIL",
+  "picture": "https://lh3.googleusercontent.com/a/ACg8ocIfkqj5M5rgW3mzosRzlyOXDpcc_z9FcJ_dwUOwW_8_EzCNUw=s96-c",
+  "given_name": "WORK",
+  "family_name": "EMAIL",
+  "iat": 1778094803,
+  "exp": 1778098403
 }
 
 ###
 
 DELETE  http://localhost:5000/users/sampleuser
 content-type: application/json
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmRiZWU3ZWRmY2NkYTBhMThhNDc1M2MiLCJ1c2VyTmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiIkMmIkMTAkZlRteVhLMGhjY1dJaHdkMVhQeDJYZXdWQmpBUGRPZEViZWVUa25wYm9PVURKd3hFWTgxV2EiLCJwZXJtaXNzaW9ucyI6ImFkbWluIiwiY3JlYXRlZEF0IjoiMjAyMC0xMi0xN1QyMzo0OToxOC4wNTFaIiwidXBkYXRlZEF0IjoiMjAyMC0xMi0xN1QyMzo0OToxOC4wNTFaIiwiX192IjowLCJpYXQiOjE2MDgyNDk3NjQsImV4cCI6MTYwODI1MzM2NH0.DIl0Bu4T-IlqYEc8rR27yUouFe-iZ1BJ4xx1Q4OyFIw
+authorization: Bearer
 
 
 {
@@ -45,5 +56,5 @@ POST http://localhost:5000/users/validate
 Content-Type: application/json
 
 {
-    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmQ2ODExYjMxZjkwMTU2ZjBiOWJkYmIiLCJ1c2VyTmFtZSI6InRlc3R1c2VyIiwicGFzc3dvcmQiOiIkMmIkMTAkLzJrdW11Wm8zZFRnNk9sOHNhRDNRZTdMaFg0WVJrTmtNYnVkZFpmYVQuSDVjekF1QTMzQWEiLCJjcmVhdGVkQXQiOiIyMDIwLTEyLTEzVDIxOjAxOjE1LjEwMVoiLCJ1cGRhdGVkQXQiOiIyMDIwLTEyLTEzVDIxOjAxOjE1LjEwMVoiLCJfX3YiOjAsImlhdCI6MTYwODIzOTA0NCwiZXhwIjoxNjA4MjQyNjQ0fQ.vOwhjU4zfEkxAGlq9J0qKD_1-XX2rBx7dHMk8Izjt74"
+    "accessToken": ""
 }

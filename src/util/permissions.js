@@ -1,7 +1,12 @@
-const checkPermissions = (permission) => {
-  return function (req, res, next) {
-    const access = req.user.permissions === permission;
-    if (access) {
+const { getUserByGoogleUserId } = require("../services/OAuthService");
+
+const checkPermissions = () => {
+  return async (req, res, next) => {
+    const userData = req.user;
+
+    const { isAdmin } = await getUserByGoogleUserId(userData.sub);
+
+    if (isAdmin) {
       next();
     } else {
       res.sendStatus(403);

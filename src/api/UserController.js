@@ -1,55 +1,36 @@
-const User = require("../models/user");
-const Bcrypt = require("bcrypt");
-const JWT = require("jsonwebtoken");
-const { authenticateUser } = require("../util/auth");
 const {
-  getAccessToken,
   getAllUsers,
-  getUserByUsername,
   deleteUserByUsername,
   validateJwt,
+  createNewUser,
+  // getUserByGoogleSub,
 } = require("../services/UserService");
+const jwtDecode = require("jwt-decode");
+require("dotenv").config();
 
-const createUser = async (req, res, next) => {
+const { getUserByGoogleUserId } = require("../services/OAuthService");
+
+const createUser = async (req, res) => {
   try {
-    const data = req.body;
-    const encryptedPassword = await Bcrypt.hash(data.password, 10);
-    const user = await User.create({
-      userName: data.userName,
-      password: encryptedPassword,
-      permissions: data.permissions || "read-only",
-    });
-    const accessToken = await getAccessToken(user.toJSON());
-    res.status(201).send({ user, accessToken });
+    const userData = req.headers["authorization"]
+      ? jwtDecode(req.headers["authorization"].split(" ")[1])
+      : null;
+
+    if (!userData) {
+      return res.status(401).json({ error: "No authorization token provided" });
+    }
+
+    const newUser = await createNewUser(userData);
+    res.send(newUser);
   } catch (e) {
-    res.send(e);
-    console.log(e);
+    console.error("Error creating user:", e);
+    res
+      .status(500)
+      .json({ error: "Failed to create user", details: e.message });
   }
 };
 
-const loginUser = async (req, res, next) => {
-  try {
-    const userData = req.body;
-
-    const users = await getUserByUsername(userData.userName);
-    const currentUser = users[0];
-    if (!currentUser) {
-      res.status(401).send("no such user");
-    }
-    const authenticated = await authenticateUser(userData, currentUser);
-    if (authenticated) {
-      const accessToken = await getAccessToken(currentUser.toJSON());
-      res.send({ accessToken, currentUser });
-    } else {
-      res.status(401).send();
-    }
-  } catch (e) {
-    res.status(500).send(e);
-    console.log(e);
-  }
-};
-
-const validateAccessToken = async (req, res, next) => {
+const validateAccessToken = async (req, res) => {
   try {
     const token = req.body.accessToken;
     const validation = await validateJwt(token);
@@ -60,7 +41,10 @@ const validateAccessToken = async (req, res, next) => {
       res.sendStatus(403);
     }
   } catch (e) {
-    console.log(e);
+    console.error("Error validating token:", e);
+    res
+      .status(500)
+      .json({ error: "Failed to validate token", details: e.message });
   }
 };
 
@@ -69,17 +53,20 @@ const getUsers = async (req, res, next) => {
     const users = await getAllUsers();
     res.send(users);
   } catch (e) {
-    console.log(e);
+    console.error("Error getting users:", e);
+    res.status(500).json({ error: "Failed to get users", details: e.message });
   }
 };
 
 const getSpecificUser = async (req, res, next) => {
   try {
-    const userName = req.params.username;
-    const user = await getUserByUsername(userName);
+    const sub = req.params.sub;
+    const user = await getUserByGoogleUserId(sub);
+    console.log("user found:", user);
     res.send(user);
   } catch (e) {
-    console.log(e);
+    console.error("Error getting specific user:", e);
+    res.status(500).json({ error: "Failed to get user", details: e.message });
   }
 };
 
@@ -89,13 +76,15 @@ const destroyUser = async (req, res, next) => {
     const user = await deleteUserByUsername(userName);
     res.send(user);
   } catch (e) {
-    console.log(e);
+    console.error("Error deleting user:", e);
+    res
+      .status(500)
+      .json({ error: "Failed to delete user", details: e.message });
   }
 };
 
 module.exports = {
   createUser,
-  loginUser,
   getUsers,
   getSpecificUser,
   destroyUser,

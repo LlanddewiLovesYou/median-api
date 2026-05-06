@@ -7,7 +7,6 @@ const createCommentOnPost = async (req, res, next) => {
   try {
     const postId = req.params.id;
     const commentData = req.body;
-    console.log({ controller: commentData });
     const comment = await createComment(postId, commentData);
     res.send(comment);
   } catch (e) {

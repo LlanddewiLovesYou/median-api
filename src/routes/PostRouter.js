@@ -13,18 +13,18 @@ const PostRouter = express.Router();
 
 PostRouter.get("/", getAllPosts);
 PostRouter.get("/:id", getPost);
-PostRouter.post("/", authenticateToken, checkPermissions("admin"), createPost);
+PostRouter.post("/", authenticateToken, createPost);
 PostRouter.patch(
   "/:id",
   authenticateToken,
   checkPermissions("admin"),
-  updatePost
+  updatePost,
 );
 PostRouter.delete(
   "/:id",
   authenticateToken,
   checkPermissions("admin"),
-  deletePost
+  deletePost,
 );
 
 module.exports = PostRouter;

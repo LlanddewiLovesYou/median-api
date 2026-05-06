@@ -1,32 +1,26 @@
 const express = require("express");
 const {
-  createUser,
   loginUser,
   getUsers,
   getSpecificUser,
   destroyUser,
   validateAccessToken,
+  createUser,
 } = require("../api/UserController");
 const { authenticateToken } = require("../util/auth");
 const { checkPermissions } = require("../util/permissions");
 
 const UserRouter = express.Router();
 
-UserRouter.post("/", createUser);
-UserRouter.post("/login", loginUser);
+UserRouter.post("/", authenticateToken, createUser);
 UserRouter.post("/validate", validateAccessToken);
 UserRouter.get("/", authenticateToken, checkPermissions("admin"), getUsers);
-UserRouter.get(
-  "/:username",
-  authenticateToken,
-  checkPermissions("admin"),
-  getSpecificUser
-);
+UserRouter.get("/:sub", authenticateToken, getSpecificUser);
 UserRouter.delete(
   "/:username",
   authenticateToken,
   checkPermissions("admin"),
-  destroyUser
+  destroyUser,
 );
 
 module.exports = UserRouter;
