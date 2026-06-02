@@ -55,9 +55,9 @@ const deleteCommentById = async (commentId) => {
     );
     await Post.updateOne({ id: post.id }, { comments: updatedCommentsOnPost });
 
-    const remainingComments = (await Comment.find({ postId: post.id })).filter(
-      (comment) => comment.id !== commentId,
-    );
+    const remainingComments = (await Comment.find({ postId: post.id }))
+      .filter((comment) => comment.id !== commentId)
+      .sort((a, b) => b.createdAt - a.createdAt);
     return remainingComments;
   } catch (e) {
     console.log(e);
