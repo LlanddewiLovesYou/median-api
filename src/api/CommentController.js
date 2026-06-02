@@ -1,6 +1,7 @@
 const {
   createComment,
   getCommentsByPostId,
+  deleteCommentById,
 } = require("../services/CommentService");
 
 const createCommentOnPost = async (req, res, next) => {
@@ -26,4 +27,19 @@ const getCommentsForPost = async (req, res, next) => {
   }
 };
 
-module.exports = { createCommentOnPost, getCommentsForPost };
+const deleteCommentfromPost = async (req, res, next) => {
+  try {
+    const commentId = req.params.id;
+    const deletedComment = await deleteCommentById(commentId);
+    res.send(deletedComment);
+  } catch (e) {
+    console.log(e);
+    res.sendStatus(500);
+  }
+};
+
+module.exports = {
+  createCommentOnPost,
+  getCommentsForPost,
+  deleteCommentfromPost,
+};

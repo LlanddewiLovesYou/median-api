@@ -1,15 +1,14 @@
-POST http://localhost:5000/comments/here-is-a-second-post
+POST http://localhost:5000/comments/nodejs-performance-tips-210279bc-590c-4993-843b-cd6a0e0308be
 content-type: application/json
 
 {
-    "text": "the 6th comment",
-    "userId": "5fe23c6abdafa758b46d96c0"
-
+    "text": "the 7th comment",
+    "sub": "116539756123146752273"
 }
 
 ###
 
-GET http://localhost:5000/comments/here-is-a-sample-post
+GET http://localhost:5000/comments/nodejs-performance-tips-210279bc-590c-4993-843b-cd6a0e0308be
 content-type: application/json
 
 ###

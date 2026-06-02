@@ -62,7 +62,6 @@ const getSpecificUser = async (req, res, next) => {
   try {
     const sub = req.params.sub;
     const user = await getUserByGoogleUserId(sub);
-    console.log("user found:", user);
     res.send(user);
   } catch (e) {
     console.error("Error getting specific user:", e);

@@ -4,7 +4,6 @@ const createNewPost = async (data) => {
   data.readTime = Math.ceil(data.wordCount / 200) || 1;
   try {
     const post = await Post.create(data);
-    console.log("post created!");
     return post;
   } catch (e) {
     console.log(e);

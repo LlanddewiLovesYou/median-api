@@ -2,12 +2,21 @@ const mongoose = require("mongoose");
 
 const commentSchema = new mongoose.Schema(
   {
+    id: {
+      type: String,
+      required: true,
+      default: () => UUID(),
+    },
     user: {
-      userId: {
+      sub: {
         type: String,
         required: true,
       },
       userName: {
+        type: String,
+        required: true,
+      },
+      picture: {
         type: String,
         required: true,
       },
@@ -22,7 +31,7 @@ const commentSchema = new mongoose.Schema(
       required: true,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const Comment = mongoose.model("Comment", commentSchema);
