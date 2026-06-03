@@ -40,7 +40,8 @@ const getPostById = async (id) => {
 
 const updatePostById = async (id, body) => {
   try {
-    let post = await Post.updateOne({ id }, { $set: body });
+    body.readTime = Math.ceil(body.wordCount / 200) || 1;
+    await Post.updateOne({ id }, { $set: body });
     const updatedPost = await Post.find({ id });
     return updatedPost;
   } catch (e) {
