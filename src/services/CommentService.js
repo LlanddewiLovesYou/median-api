@@ -64,4 +64,21 @@ const deleteCommentById = async (commentId) => {
   }
 };
 
-module.exports = { createComment, getCommentsByPostId, deleteCommentById };
+const updateCommentById = async (commentId, updateData) => {
+  try {
+    const updatedComment = await Comment.updateOne(
+      { id: commentId },
+      { ...updateData },
+    );
+    return updatedComment;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+module.exports = {
+  createComment,
+  getCommentsByPostId,
+  deleteCommentById,
+  updateCommentById,
+};

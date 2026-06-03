@@ -1,5 +1,7 @@
+const Comment = require("../models/comment");
 const Post = require("../models/post");
 const { updatePostById } = require("../services/PostService");
+const { updateCommentById } = require("../services/CommentService");
 
 const incrementClaps = async (req, res) => {
   try {
@@ -13,4 +15,18 @@ const incrementClaps = async (req, res) => {
   }
 };
 
-module.exports = { incrementClaps };
+const incrementCommentClaps = async (req, res) => {
+  try {
+    const commentId = req.params.id;
+    const comments = await Comment.find({ id: commentId });
+    const comment = comments[0];
+    const updatedComment = await updateCommentById(commentId, {
+      claps: comment.claps + 1,
+    });
+    res.send(updatedComment);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+module.exports = { incrementClaps, incrementCommentClaps };
