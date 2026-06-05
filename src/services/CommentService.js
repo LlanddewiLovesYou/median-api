@@ -7,13 +7,10 @@ const createComment = async (postId, commentData) => {
   try {
     const post = await Post.findOne({ id: postId });
     const user = await User.findOne({ sub: commentData.sub });
+
     const comment = await Comment.create({
       id: UUID(),
-      user: {
-        userName: user.name,
-        sub: user.sub,
-        picture: user.picture,
-      },
+      user,
       text: commentData.text,
       postId: post.id,
     });

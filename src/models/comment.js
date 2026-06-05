@@ -12,13 +12,17 @@ const commentSchema = new mongoose.Schema(
         type: String,
         required: true,
       },
-      userName: {
+      name: {
         type: String,
         required: true,
       },
       picture: {
         type: String,
         required: true,
+      },
+      bio: {
+        type: String,
+        required: false,
       },
     },
 
