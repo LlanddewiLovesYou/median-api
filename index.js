@@ -21,7 +21,7 @@ app.use("/comments", CommentRouter);
 app.use("/oauth", OAuthRouter);
 
 connectDb().then(() => {
-  app.listen(port, () =>
-    console.log(`MEDIAN-API is listening on port ${port}`)
+  app.listen(port, "0.0.0.0", () =>
+    console.log(`MEDIAN-API is listening on port ${port}`),
   );
 });
